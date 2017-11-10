@@ -1,0 +1,27 @@
+@import url("style.css");
+button.click{
+    background-color: transparent;
+    height: 3.5rem;
+    margin-top: 5rem;
+    border-radius: 3px;
+    border: none;
+    margin-left: -2rem;
+    color: lightgrey;
+}
+input#textInput{
+    margin-left: 105rem;
+    border: 1px solid lightgrey;
+    color: #239B56;
+    width: 24rem;
+}
+input#textInput:focus,input#textInput:active{
+    border: 1px solid #239B56;
+}
+.form-control:focus ~ button.click,.form-control:active ~ button.click{
+    color: #239B56;
+}
+#searchBar{
+    display: inline-flex;
+    margin-top: -4rem;
+}
+
