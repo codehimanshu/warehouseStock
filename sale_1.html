@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flourish</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Josefin+Sans|Josefin+Slab|Libre+Baskerville|Lobster|Lobster+Two|Montserrat|Nunito|Playfair+Display+SC|Poiret+One|Questrial|Quicksand|Roboto|Sanchez|Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora|Quicksand|Roboto|Roboto+Slab" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+</head>
+<body>
+ 
+  <input type="text" name="textBox" id="inputText" list="dropdown">
+  <datalist id="dropdown">
+  </datalist>
+  <button id="submit">Submit</button>
+  <div id="result"></div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#inputText').val(' ');
+       $("#submit").click(function(){
+       	 var searchValue = $("#inputText").val();
+         localStorage.setItem('prodSearch',searchValue);
+         var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/searchProducts';
+         console.log(localStorage.getItem('ware_house'));
+         $.ajax({
+           type: 'POST',
+           url: url,
+           // send the id from localstorage to API.
+           data: {id: localStorage.getItem('ware_house') , keyword: localStorage.getItem('prodSearch')},
+           success: 
+           function(wb){
+              console.log(wb);
+              for(i in wb.allproducts){
+              	var $prod = wb.allproducts[i];
+              	console.log('<opion value="'+ $prod.name+'">');
+                $("#dropdown").append('<opion value="'+ $prod.name+'"/>');
+              }
+            }
+        });
+       });
+	});
+</script>
+</body>
+</html>

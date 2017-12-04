@@ -31,4 +31,8 @@ $(document).ready(function(){
            localStorage.setItem('prod_search',searchVal);
            window.location.href="./prod_search.html";
         });
+        $("#salelink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);
+           window.location.href="./sale_1.html";
+        });
 });
