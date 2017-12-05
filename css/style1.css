@@ -1,0 +1,31 @@
+
+
+
+input, select { vertical-align: middle; }
+
+body { font:13px/1.231 sans-serif; *font-size:small; } 
+select, input, textarea, button { font:99% sans-serif; }
+
+
+
+body { background: #EEE; color: #444; line-height: 1.4em; }
+
+
+body { font-family: sans-serif; font-size: 1em; }
+
+
+
+.select,
+.chosen-select,
+.chosen-select-no-single,
+.chosen-select-no-results,
+.chosen-select-deselect,
+.chosen-select-rtl,
+.chosen-select-width {
+  width: 350px;
+}
+
+.jquery-version-refer {
+  margin-top: 40px;
+  font-style: italic;
+}
