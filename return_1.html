@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora|Quicksand|Roboto|Roboto+Slab" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-    <link rel="stylesheet" type="text/css" href="css/sale_1.css">
+    <link rel="stylesheet" type="text/css" href="css/return_1.css">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -67,7 +67,7 @@
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="panel large">
 		<div class="animated fadeIn">
-          <h3 class="text-center">UPDATE THE SALES</h3>
+          <h3 class="text-center">UPDATE THE DETAILS OF ITEM TO BE RETURNED</h3>
           <form>
            <input type="text" class="form-control" id="textInput_1" placeholder="Enter here...">
            <input type="button" value="UPDATE" id="submit" style="outline-style: none;">
@@ -143,7 +143,7 @@
               for(i in wb.allproducts){
                 $prod = wb.allproducts[i];
                  $("#result").html('<tr id="myTable"><td class="product" id='+ $prod.id + '>'+ $prod.name + '</td><td id="sizeCol">' + $prod.size + '</td><td id="sizeQuat">\
-                  ' + ' '+ '0.'+$prod.quantity+ '</td></tr>').show(50);
+                  ' + ' '+ $prod.quantity+ '</td></tr>').show(50);
               }
             }
         });
@@ -164,7 +164,7 @@
         });
 
         $(document).on("click","#submit",function(e){
-          var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/sale'
+          var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/returnstock'
           $.ajax({
             type: 'POST',
             url: url,

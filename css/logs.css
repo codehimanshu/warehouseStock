@@ -18,7 +18,7 @@ table#result{
    margin-bottom: 15rem;
 }
 #prodLog{
-   padding-left: 0rem;
+   padding-left: 2rem;
 }
       @media (max-width: 320px){
         #prodLog{

@@ -31,6 +31,8 @@
             <div class="collapse navbar-collapse navbar-right" id="mainNavbar">
                 <ul class="nav navbar-nav " >
                   <li><a href="index.html" id="link">Home</a></li>
+                  <li><a href="LogIn_S.html" id="salelink">Update Sales</a></li>
+                  <li><a href="LogIn_R.html" id="returnlink">Return Stock</a></li>
                   <li><a href="logs.html" id="link">Logs</a></li>
                 </ul>
             </div>
@@ -54,7 +56,7 @@
      <th>Warehouse</th>
      <th>Type</th>
      <th id="prodLog">Product</th>
-     <th>Quantity</th>
+     <th>Product Code</th>
      <th>Created At</th>
    </tr>
 </table>
@@ -84,7 +86,7 @@
                             var recent_Log = wb.recentlog[i];
                             console.log(recent_Log);
                             $("#result").append('<tr id="myTable"><td>'+ recent_Log.warehouse + '</td><td>' + recent_Log.type + '</td><td id="prodLog">\
-                              ' +recent_Log.product + '</td><td>' + ' '+ recent_Log.quantity+ '</td><td>'+ recent_Log.created_at + '</td>\
+                              ' +recent_Log.product + '</td><td>' + ' '+ '0.'+recent_Log.quantity+ '</td><td>'+ recent_Log.created_at + '</td>\
                               </tr>');
                          } 
                       
