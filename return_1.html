@@ -118,11 +118,19 @@
               	var $prod = wb.allproducts[i];
                 $("#dropdown").append('<option id="autocomplete" value="'+ $prod.name+'"/>');
               }
+            },
+            select: 
+            function (e,ui) {        
+                 console.log(ui);
             }
         });
        });
+       $(document).on("select","#autocomplete",function(e){
+            var id1 = $(this).attr('id');
+            console.log(id1);
+       });
        
-       $('button.click').click(function(){
+      /* $('button.click').click(function(){
            localStorage.setItem('warehouse',id);
            var searchVal = $("#textInput").val();
            localStorage.setItem('prod_search',searchVal);
@@ -161,7 +169,7 @@
            // store ID of sub category in storage
            localStorage.setItem('prod',id1);
            console.log(id1);
-        });
+        });*/
 
         $(document).on("click","#submit",function(e){
           var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/returnstock'

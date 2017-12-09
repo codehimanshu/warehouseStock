@@ -1,5 +1,23 @@
 @import url("index.css");
-
+/*.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    width: 250px;
+    min-width: 250px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #888 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    height: 0;
+    left: 50%;
+    margin-left: 187px;
+    margin-top: -2px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+}*/
 button.click{
     background-color: transparent;
     height: 3.5rem;
