@@ -22,6 +22,7 @@
   <div id="result"></div>
 <script type="text/javascript">
   $(document).ready(function(){
+    var ar = [];
     // $('#inputText').val(' ');
        $("#inputText1").keypress(function(){
          var searchValue = $("#inputText1").val();
@@ -38,7 +39,8 @@
               console.log(wb);
               for(i in wb.allproducts){
                 var $prod = wb.allproducts[i];
-                $("#dropdown1").append('<option value="'+ $prod.id + '-' + $prod.name +'" />');
+                ar[$prod.name] = $prod.id;
+                $("#dropdown1").append('<option value="'+$prod.name +'" />');
                 if(i>15)
                   break;
               }
@@ -48,8 +50,9 @@
 
       $("#submit").click(function() {
         var value = $("#inputText1").val();
-        var valArray = value.split("-");
-        console.log(valArray[0]);
+        // var valArray = value.split("-");
+        // console.log(valArray[0]);
+        console.log(ar[value]);
         // Do task here
       })
   });
