@@ -43,29 +43,31 @@
         </div>
 </nav>
 <div class="container">
-<div class="row">
-	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-	 <div class="panel small">
-	    <h3 class="text-center">SEARCH PRODUCTS</h3>
-      <select id="dropdown" class="select2me" onchange="console.log('@')">
-        <option value="null" disabled="true">Select</option>
-      </select>
-    </div>
-	</div>
-	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="panel large">
-		<div class="animated fadeIn">
-          <h3 class="text-center">UPDATE THE SALES</h3>
-          <form>
-           <input type="text" class="form-control" id="textInput_1" placeholder="Enter here...">
-           <input type="button" value="UPDATE" id="submit" style="outline-style: none;">
-          </form>
-          <p id="result_1"></p>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="panel small">
+             <h3 class="text-center">SEARCH PRODUCTS</h3>
+             <div id="searchBar">
+                <input type="text" class="form-control" placeholder="Search" id="textInput" list="dropdown"/><br><br>
+                <button class="click" style="outline-style: none;text-decoration: none;"><i class="glyphicon glyphicon-search"></i></button>
+                <div id="datalist" style="overflow-y: auto;height: 100px;"><datalist id="dropdown" onclick="myFunction();"></datalist></div>
+             </div>
+          </div>
         </div>
-      </div>
-	</div>
-</div>
-</div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="panel large">
+             <div class="animated fadeIn">
+                <h3 class="text-center">UPDATE THE SALES</h3>
+                <form>
+                    <input type="text" class="form-control" id="textInput_1" placeholder="Enter here...">
+                    <input type="button" value="UPDATE" id="submit" style="outline-style: none;">
+                </form>
+                <p id="result_1"></p>
+             </div>
+          </div>
+        </div>
+    </div>
+  </div>
 
     <div class="container contact animated fadeIn">
             <div class="row">
@@ -85,75 +87,47 @@
     </div> 
 <script type="text/javascript">
 	$(document).ready(function(){
-        var searchValue = $(".select2-search__field").val();
+    $("#prodList,#backSearch").hide();
+    var searchValue = $("#textInput").val();
+        localStorage.setItem('prodSearch',searchValue);
         var id= localStorage.getItem('ware_house');
-       $("#dropdown").select2({
-           id: function(e) { return e.id+":"+e.title; },
-           ajax:{
-             url: 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/searchProducts',
-             dataType: 'json',
-             data: /*{id: localStorage.getItem('ware_house') , keyword: "hello"},*/
-             function(keyword, page) {
 
-                return {
-                    q: keyword,
-                    page_limit: 10,
-                    apikey: "z4vbb4bjmgsb7dy33kvux3ea" //my own apikey
-                };
-            },
-             results: 
-               function(data){
-                 return{
-                    results: console.log(data)
-                 }
-               }
-           },formatResult: formatResult,
-        formatSelection: formatSelection,
-        initSelection: function(element, callback) {
-            var data = [];
-            $(element.val().split(",")).each(function(i) {
-                var item = this.split(':');
-                data.push({
-                    id: item[0],
-                    title: item[1]
-                });
-            });
-            //$(element).val('');
-            callback(data);
-        }
- 
-
-
-       });
-       /*$(document).on("keypress",".select2-search__field",function(){
-		    var searchValue = $(".select2-search__field").val();
+       $("#textInput").keypress(function(){
+         
          var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/searchProducts';
-         console.log(searchValue);
+         console.log(localStorage.getItem('ware_house'));
          $.ajax({
            type: 'POST',
            url: url,
            // send the id from localstorage to API.
-           data: {id: localStorage.getItem('ware_house') , keyword: searchValue},
+           data: {id: localStorage.getItem('ware_house') , keyword: localStorage.getItem('prodSearch')},
            success: 
            function(wb){
               $("#dropdown").html(' ');
               for(i in wb.allproducts){
-              	var $prod = wb.allproducts[i];
-                $("#dropdown").append('<option id="autocomplete" value="'+ $prod.name+'">'+$prod.name+'</option>');
-               
-                
+                var $prod = wb.allproducts[i];
+                $("#dropdown").append('<option class="auto" id="'+ $prod.id+ '" onclick="myFunction(id)" value="'+ $prod.name+'"/>');
               }
-            }
-          
+             
+            } 
         });
-       });*/
-
+        
+       });
+       function myFunction(d){
+          var id= d;
+          console.log(id);
+       }
+       $(document).on("click","#textInput_1",function(e){
+           var id = $(".auto").attr('id');
+           console.log(id);
+           localStorage.setItem('prod_ID',id);
+       });
         $(document).on("click","#submit",function(e){
           var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/sale'
           $.ajax({
             type: 'POST',
             url: url,
-            data: {id: localStorage.getItem('prod') ,quantity: $('#textInput_1').val()},
+            data: {id: localStorage.getItem('prod_ID') ,quantity: $('#textInput_1').val()},
             success: 
                 function(wb){
                     console.log(wb);
@@ -168,7 +142,13 @@
              $("#textInput_1,#textInput").val(' ');
              $("#result").val(' ');
           }, 3000); 
-        });                
+        });  
+        $("#salelink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);   
+        });
+        $("#returnlink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);
+        });              
   }); 
 </script>
 </body>
