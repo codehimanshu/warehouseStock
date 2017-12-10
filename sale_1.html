@@ -15,16 +15,16 @@
 </head>
 <body>
  
-  <input type="text" name="textBox" id="inputText" list="dropdown">
-  <datalist id="dropdown">
+  <input  id="inputText1" list="dropdown1">
+  <datalist id="dropdown1">
   </datalist>
   <button id="submit">Submit</button>
   <div id="result"></div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#inputText').val(' ');
-       $("#submit").click(function(){
-       	 var searchValue = $("#inputText").val();
+		// $('#inputText').val(' ');
+       $("#inputText1").keypress(function(){
+       	 var searchValue = $("#inputText1").val();
          localStorage.setItem('prodSearch',searchValue);
          var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/searchProducts';
          console.log(localStorage.getItem('ware_house'));
@@ -38,12 +38,20 @@
               console.log(wb);
               for(i in wb.allproducts){
               	var $prod = wb.allproducts[i];
-              	console.log('<opion value="'+ $prod.name+'">');
-                $("#dropdown").append('<opion value="'+ $prod.name+'"/>');
+                $("#dropdown1").append('<option value="'+ $prod.id + '-' + $prod.name +'" />');
+                if(i>15)
+                  break;
               }
             }
         });
        });
+
+      $("#submit").click(function() {
+        var value = $("#inputText1").val();
+        var valArray = value.split("-");
+        console.log(valArray[0]);
+        // Do task here
+      })
 	});
 </script>
 </body>
