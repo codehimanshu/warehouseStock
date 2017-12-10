@@ -8,6 +8,7 @@ $(document).ready(function(){
           data: {id: warehouse_id },
           success: function(wb){
             console.log(wb);
+            wb.allcat.sort(function(a,b){ return a.name.localeCompare(b.name); });
             for(i in wb.allcat){
               var maincat = wb.allcat[i];
               console.log(maincat);
@@ -33,6 +34,10 @@ $(document).ready(function(){
         });
         $("#salelink").click(function(){
            localStorage.setItem('ware_house',warehouse_id);
-           window.location.href="./sale_1.html";
+          
+        });
+        $("#returnlink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);
+           
         });
 });

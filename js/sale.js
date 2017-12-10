@@ -15,5 +15,13 @@ $(document).ready(function(e){
            setTimeout(function () {
              window.location.href = "index.html"; 
            }, 2000);       
+     });
+     $("#salelink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);
+          
+     });
+     $("#returnlink").click(function(){
+           localStorage.setItem('ware_house_1',warehouse_id);
+           
      }); 
 }); 

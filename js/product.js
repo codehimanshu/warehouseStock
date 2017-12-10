@@ -15,7 +15,7 @@
                 +$prod.size+'<br><b>Quantity:</b>'+' '+$prod.quantity+'</p></button></p>\
                 </div>');*/
                  $("#result").append('<tr id="myTable"><td class="product" id='+ $prod.id + '>'+ $prod.name + '</td><td id="sizeCol">' + $prod.size + '</td><td>\
-                  ' + ' '+ $prod.quantity+ '</td></tr>');
+                  ' + ' '+ '0.'+$prod.quantity+ '</td></tr>');
               }
             }
           });
@@ -31,5 +31,13 @@
          $("#result tr#myTable").filter(function() {
          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
          });
+      });
+      $("#salelink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);
+          
+      });
+      $("#returnlink").click(function(){
+           localStorage.setItem('ware_house_1',warehouse_id);
+           
       });
 });

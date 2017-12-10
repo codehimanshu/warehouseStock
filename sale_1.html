@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Flourish</title>
-	<meta charset="utf-8">
+  <title>Flourish</title>
+  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
@@ -21,10 +21,10 @@
   <button id="submit">Submit</button>
   <div id="result"></div>
 <script type="text/javascript">
-	$(document).ready(function(){
-		// $('#inputText').val(' ');
+  $(document).ready(function(){
+    // $('#inputText').val(' ');
        $("#inputText1").keypress(function(){
-       	 var searchValue = $("#inputText1").val();
+         var searchValue = $("#inputText1").val();
          localStorage.setItem('prodSearch',searchValue);
          var url= 'http://flourish-release.ap-south-1.elasticbeanstalk.com/stocks/searchProducts';
          console.log(localStorage.getItem('ware_house'));
@@ -37,7 +37,7 @@
            function(wb){
               console.log(wb);
               for(i in wb.allproducts){
-              	var $prod = wb.allproducts[i];
+                var $prod = wb.allproducts[i];
                 $("#dropdown1").append('<option value="'+ $prod.id + '-' + $prod.name +'" />');
                 if(i>15)
                   break;
@@ -52,7 +52,7 @@
         console.log(valArray[0]);
         // Do task here
       })
-	});
+  });
 </script>
 </body>
 </html>

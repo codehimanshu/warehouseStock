@@ -11,4 +11,12 @@ $(document).ready(function(){
         $(document).on("click","#btn3", function(e){
             window.location.href="./LogIn_3.html";
         });
+        $("#salelink").click(function(){
+           localStorage.setItem('ware_house',warehouse_id);
+          
+        });
+        $("#returnlink").click(function(){
+           localStorage.setItem('ware_house_1',warehouse_id);
+           
+        });
 });
